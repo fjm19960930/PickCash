@@ -1,0 +1,3 @@
+rootProject.name = "PickCash"
+include ':app'
+include ':liveness'

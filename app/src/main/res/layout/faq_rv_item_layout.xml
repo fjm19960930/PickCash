@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/faq_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:drawableLeft="@mipmap/faq"
+        android:drawablePadding="8dp"
+        android:text="1.How to apply for a loan?"
+        android:textColor="#ff333333"
+        android:textSize="14sp"
+        android:textStyle="bold"/>
+    <ImageView
+        android:id="@+id/faq_item_show_and_hide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentRight="true"
+        android:background="@mipmap/down"/>
+    <TextView
+        android:id="@+id/faq_item_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/faq_item_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="40dp"
+        android:text="All it takes is 10 minutes to fill out the information required for the loan, submit it to the system, and the system notifiesyou of the result within 24 hours."
+        android:textColor="#ff999999"
+        android:textSize="12sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_below="@id/faq_item_content"
+        android:background="#AAAAAA"/>
+</RelativeLayout>

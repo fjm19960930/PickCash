@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="340dp"
+    android:layout_height="100dp"
+    android:background="@drawable/home_loan_express_bg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="10.5dp"
+        android:text="Loan express"
+        android:textColor="#ff0f0f0f"
+        android:textSize="18sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginRight="11dp"
+        android:layout_alignParentRight="true"
+        android:text="Today, the loan limit is only 8%"
+        android:textColor="#ff3793fe"
+        android:textSize="12sp"/>
+    <TextView
+        android:id="@+id/home_loan_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="50dp"
+        android:drawableStart="@mipmap/home_horn_ic"
+        android:drawableLeft="@mipmap/home_horn_ic"
+        android:drawablePadding="6dp"
+        android:text="Congratulations on Tony's successful loan of "
+        android:textColor="#ff333333"
+        android:textSize="10sp"/>
+    <TextView
+        android:id="@+id/home_loan_tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/home_loan_tv"
+        android:layout_alignTop="@id/home_loan_tv"
+        android:text="200,000 "
+        android:textColor="#F47F53"
+        android:textSize="10sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/home_loan_tv1"
+        android:layout_alignTop="@id/home_loan_tv1"
+        android:text="rupees.."
+        android:textColor="#ff333333"
+        android:textSize="10sp"/>
+</RelativeLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#E5E6EA"
+    tools:context=".main.privacy.PrivacyFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="Privacy Agreement"
+        android:textColor="#ff333333"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/privacy_bg">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hi. there"
+                android:textColor="#8A4C4C"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To assess your eligibility and facilitate faster disbursal of your loan. We need these permissions"
+                android:textColor="#8A4C4C"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9.5dp"
+                android:layout_marginBottom="10.5dp"
+                android:text="Message"
+                android:textAppearance="@style/Privacy_title_style"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="We will collect and monitor your sms records for credit risk assessment which enables faster loan repayment."
+                android:textAppearance="@style/Privacy_tip_style"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="10.5dp"
+                android:text="Storage"
+                android:textAppearance="@style/Privacy_title_style"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This permission is required so that your can safely download the loan account statement and save it on your phone . You can upload the correct documents for faster loan approval and repayment as well in addition , this permission helps toprovuide a very smooth App using experience."
+                android:textAppearance="@style/Privacy_tip_style"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="10.5dp"
+                android:text="Contact"
+                android:textAppearance="@style/Privacy_title_style"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The NBFC loan process and guideline require usto verify reference material.This function enables us to do this ; withthis permission , we can select contacts directly from the contact list."
+                android:textAppearance="@style/Privacy_tip_style"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="10.5dp"
+                android:text="Camera"
+                android:textAppearance="@style/Privacy_title_style"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Camera access is required so that users can easily scan or capture identity files , etc , and save time by allowing us to autornaticassy fill in the date we need, and help improve."
+                android:textAppearance="@style/Privacy_tip_style"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

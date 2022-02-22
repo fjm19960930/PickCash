@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/register_app_dialog_bg">
+    <TextView
+        android:id="@+id/personal_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"
+        android:text="Email"
+        android:textColor="#ff333333"
+        android:textSize="12sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/personal_item_enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:hint="Please enter"
+        android:maxLines="1"
+        android:visibility="gone"
+        android:textColor="#ff999999"
+        android:textSize="12sp"
+        android:background="@drawable/register_app_dialog_bg"/>
+
+    <TextView
+        android:id="@+id/personal_item_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:drawableRight="@mipmap/next_white"
+        android:drawablePadding="10dp"
+        android:text="Please choose"
+        android:textColor="#ff999999"
+        android:textSize="12sp"
+        android:background="@drawable/register_app_dialog_bg"/>
+</RelativeLayout>

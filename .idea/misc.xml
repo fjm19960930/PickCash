@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/home_apply_btn_bg.xml" value="0.25333333333333335" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/home_loan_express_bg.xml" value="0.25333333333333335" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/home_repay_btn_bg.xml" value="0.25333333333333335" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.25729166666666664" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.203125" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.24537037037037038" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/liveness_ic_mask.xml" value="0.25729166666666664" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/liveness_selector_voice.xml" value="0.165625" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/loan_state_apply_failed_btn.xml" value="0.203125" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/loan_state_apply_processing_btn.xml" value="0.203125" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/loan_state_failed_btn.xml" value="0.203125" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/loan_state_pay_failed_btn.xml" value="0.203125" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/loan_state_pay_processing_btn.xml" value="0.203125" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/loan_state_processing_bg.xml" value="0.203125" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/login_bg.xml" value="0.2490740740740741" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/login_btn_cannot.xml" value="0.2490740740740741" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/login_edit_bg.xml" value="0.2490740740740741" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/mine_btn_bg.xml" value="0.25333333333333335" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/next_bg.xml" value="0.25729166666666664" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/perission_bg.xml" value="0.2490740740740741" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/permission_bg.xml" value="0.25333333333333335" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/permission_ok_btn_bg.xml" value="0.2490740740740741" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/privacy_bg.xml" value="0.1640625" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/radius_30_stroke_white_shape.xml" value="0.176" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/record_repay_bg.xml" value="0.2518518518518518" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/register_app_dialog_bg.xml" value="0.25333333333333335" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/reigister_app_dialog_bg.xml" value="0.25333333333333335" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/remake_bg.xml" value="0.25729166666666664" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/select_tab1_icon.xml" value="0.14895833333333333" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/select_tab1_text_color.xml" value="0.24537037037037038" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/select_tab2_icon.xml" value="0.24537037037037038" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/select_tab2_text_color.xml" value="0.24537037037037038" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/select_tab3_icon.xml" value="0.24537037037037038" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/select_tab3_text_color.xml" value="0.24537037037037038" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/select_tab_icon.xml" value="0.24537037037037038" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/verify_bank_card_bg.xml" value="0.25729166666666664" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/verify_get_ifsc_bg.xml" value="0.25729166666666664" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/drawable/verify_tip_bg.xml" value="0.25729166666666664" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_about_us.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_faq.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_kefu.xml" value="0.2" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_liveness.xml" value="0.24114583333333334" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_loan_apply.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_loan_apply_test.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_loan_item_detail.xml" value="0.23731884057971014" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_loan_record.xml" value="0.24114583333333334" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_loan_state.xml" value="0.23731884057971014" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_main.xml" value="0.12083333333333333" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_personal_info.xml" value="0.24114583333333334" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_personal_info_test.xml" value="0.22554347826086957" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_pick_cash_authorization.xml" value="0.24114583333333334" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_pick_cash_home.xml" value="0.24114583333333334" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_pick_cash_login.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_pick_cash_main.xml" value="0.24003623188405798" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_pick_cash_start.xml" value="0.15989583333333332" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_verify.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_verify_bank_card.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_verify_card.xml" value="0.23278985507246377" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_verify_get_ifsc.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_verify_get_ifsc2.xml" value="0.2341485507246377" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_exit_verify_layout.xml" value="0.23731884057971014" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_log_out_layout.xml" value="0.24114583333333334" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_permission_layout.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_reigister_app.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_reigister_app_layout.xml" value="0.24114583333333334" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_select_layout.xml" value="0.24114583333333334" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/faq_rv_item_layout.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/fragment_mine.xml" value="0.2" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/fragment_privacy.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/home_loan_layout.xml" value="0.2265625" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/loading_dialog_layout.xml" value="0.24114583333333334" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/personal_info_contact_item_layout.xml" value="0.24114583333333334" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/personal_info_item_layout.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/record_rv_item_layout.xml" value="0.2" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/select_item_layout.xml" value="0.24114583333333334" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/tab_item_layout.xml" value="0.2" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/verify_card_dialog_layout.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/verify_confirm_dialog_layout.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/verify_error_dialog_layout.xml" value="0.24114583333333334" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2518518518518518" />
+        <entry key="..\:/ASWorkSpace/PickCash/liveness/src/main/res/layout/activity_liveness.xml" value="0.20471014492753623" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

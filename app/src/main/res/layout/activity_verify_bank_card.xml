@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#49B8C0"
+    tools:context=".main.home.loan.verify.PersonalInfoActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="20dp"
+        android:background="#49B8C0">
+
+        <ImageView
+            android:id="@+id/bank_card_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="Verify Bank Card"
+            android:textColor="#ffffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginHorizontal="15dp"
+        android:paddingHorizontal="40dp"
+        android:gravity="center"
+        android:text="*Please fll in the correct personal information,Wrong information will cause loan failure!"
+        android:textColor="#ffee5319"
+        android:textSize="12sp"
+        android:background="@drawable/verify_tip_bg"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/register_app_dialog_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:text="Paytm ID"
+            android:textColor="#ff333333"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/bank_card_p_id_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:hint="Please enter"
+            android:maxLines="1"
+            android:textColor="#2A737A"
+            android:textColorHint="#2A737A"
+            android:textSize="12sp"
+            android:background="@drawable/register_app_dialog_bg"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/register_app_dialog_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:text="UPI ID"
+            android:textColor="#ff333333"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/bank_card_u_id_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:hint="Please enter"
+            android:maxLines="1"
+            android:textColor="#2A737A"
+            android:textColorHint="#2A737A"
+            android:textSize="12sp"
+            android:background="@drawable/register_app_dialog_bg"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/register_app_dialog_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:text="Bank account"
+            android:textColor="#ff333333"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/bank_card_account_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:hint="Please enter"
+            android:maxLines="1"
+            android:textColor="#2A737A"
+            android:textColorHint="#2A737A"
+            android:textSize="12sp"
+            android:background="@drawable/register_app_dialog_bg"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/register_app_dialog_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:text="IFSC"
+            android:textColor="#ff333333"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/bank_card_ifsc_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:hint="Please enter"
+            android:maxLines="1"
+            android:textColor="#2A737A"
+            android:textColorHint="#2A737A"
+            android:textSize="12sp"
+            android:background="@drawable/register_app_dialog_bg"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/bank_card_get_ifsc_btn"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:layout_marginRight="30dp"
+        android:layout_gravity="right"
+        android:background="@drawable/verify_get_ifsc_bg"
+        android:gravity="center"
+        android:text="Find lFSC"
+        android:textColor="#ff796420"
+        android:textSize="14sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/bank_card_submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="right"
+        android:background="@drawable/verify_get_ifsc_bg"
+        android:gravity="center"
+        android:text="SUBMIT"
+        android:textColor="#ff6a640e"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+</LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loan_state_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="#F8C5E2"
+    tools:context=".main.home.loan.state.LoanStateActivity">
+    <RelativeLayout
+        android:id="@+id/record_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentTop="true"
+        android:background="#49B8C0">
+
+        <ImageView
+            android:id="@+id/loan_state_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="#ffffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/loan_state_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        android:background="@mipmap/ic_apply_process"/>
+    <TextView
+        android:id="@+id/loan_state_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="Processing"
+        android:textColor="#ff033333"
+        android:textSize="22sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/loan_state_tip"
+        android:layout_width="232dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="The platform is reviewing your information, please wait on this page, this will increase your pass rate"
+        android:textColor="#ff033333"
+        android:textSize="12sp" />
+    <TextView
+        android:id="@+id/loan_state_btn"
+        android:layout_width="150dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="90dp"
+        android:gravity="center"
+        android:text="Refresh"
+        android:textColor="#ffffffff"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:background="@drawable/loan_state_apply_processing_btn"/>
+</LinearLayout>

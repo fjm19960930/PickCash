@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="@drawable/register_app_dialog_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.5dp"
+        android:layout_marginBottom="13.5dp"
+        android:text="TIPS"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.5dp"
+        android:layout_marginBottom="13.5dp"
+        android:layout_marginHorizontal="20dp"
+        android:text="Dear customer, the system detects that you have a registration record in the [registerApp] APP. For better service and experience, the system has synchronized your information, and you can use this APP at the same time! Thanks &amp; Regards!"
+        android:textColor="#000"
+        android:textSize="14sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/black"/>
+
+    <TextView
+        android:id="@+id/btn_register_app_ok"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="OK"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+</LinearLayout>

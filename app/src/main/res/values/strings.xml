@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PickCash</string>
+    <string name="login_tip">Please register with the mobile number which is linkedto your Aadhaar number to enable KYC and eSign</string>
+    <string name="permission_tip">By continuing you agree to our <a href="http://www.baidu.com/">Terms of ervice</a> &amp; <a href="http://www.baidu.com/">Privacy Policy</a> and receive communication form 产品名称 via SMS and E-mail.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
