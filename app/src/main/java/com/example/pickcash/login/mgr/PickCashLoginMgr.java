@@ -2,11 +2,8 @@ package com.example.pickcash.login.mgr;
 
 import android.app.Activity;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.pickcash.PickCashApplication;
-import com.example.pickcash.main.mine.mgr.MineMgr;
-import com.example.pickcash.main.mine.mgr.entity.ConfigReply;
 import com.example.pickcash.util.HttpUtil;
 import com.example.pickcash.util.NumberUtils;
 import com.zcolin.frame.http.ZHttp;
@@ -37,6 +34,7 @@ public class PickCashLoginMgr {
 
             @Override
             public void onError(int code, String error) {
+                HttpUtil.reportLog("getVoiceSupportState:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -66,6 +64,7 @@ public class PickCashLoginMgr {
 
             @Override
             public void onError(int code, String error) {
+                HttpUtil.reportLog("getVerifyCode:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -103,7 +102,7 @@ public class PickCashLoginMgr {
 
             @Override
             public void onError(int code, String error) {
-                Log.d("fjm", "onSuccess: " + code + error);
+                HttpUtil.reportLog("login:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }

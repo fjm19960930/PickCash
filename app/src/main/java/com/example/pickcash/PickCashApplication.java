@@ -1,20 +1,21 @@
 package com.example.pickcash;
 
 import android.app.Application;
-import android.content.Context;
 
+import com.appsflyer.AppsFlyerLib;
+import com.example.pickcash.util.CrashHandler;
 import com.zcolin.frame.app.BaseApp;
-
-import ai.advance.liveness.lib.GuardianLivenessDetectionSDK;
-import ai.advance.liveness.lib.Market;
-import ai.advance.sdk.quality.lib.GuardianImageQualitySDK;
 
 public class PickCashApplication extends BaseApp {
 
     public static String mToken = "";
 
-    public static String mPhoneNum = "1111111111";
-    public static String mTestPhoneNum = "1111111111";
+    public static String mPhoneNum = "";
+    public static String mTestPhoneNum = "";
+
+    public static String mKfPhone = "";
+    public static String mKfEmail = "";
+    public static String mVersion = "";
 
     public static boolean mHasGetContactPermission = false;
 
@@ -31,5 +32,14 @@ public class PickCashApplication extends BaseApp {
     public void onCreate() {
         super.onCreate();
         mApplication = this;
+
+        String afDevKey = "";
+        AppsFlyerLib appsflyer = AppsFlyerLib.getInstance();
+        appsflyer.setDebugLog(true);
+        appsflyer.setMinTimeBetweenSessions(0);
+        appsflyer.init(afDevKey, null, this);
+        appsflyer.start(this);
+
+        CrashHandler.getInstance().init(this);
     }
 }

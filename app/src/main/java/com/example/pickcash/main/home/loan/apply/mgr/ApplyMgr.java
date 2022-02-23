@@ -32,6 +32,7 @@ public class ApplyMgr {
 
             @Override
             public void onError(int code, String error) {
+                HttpUtil.reportLog("getLoanApplyData:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -56,6 +57,7 @@ public class ApplyMgr {
 
             @Override
             public void onError(int code, String error) {
+                HttpUtil.reportLog("loanApply:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }

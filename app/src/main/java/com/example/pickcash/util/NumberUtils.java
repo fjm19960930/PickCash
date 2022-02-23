@@ -9,13 +9,17 @@ import android.telephony.TelephonyManager;
 
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class NumberUtils {
     public static boolean isNumeric(String str) {
-        Pattern pattern = Pattern.compile("[0-9]*");
-        return pattern.matcher(str).matches();
+        try {
+            Pattern pattern = Pattern.compile("[0-9]*");
+            return pattern.matcher(str).matches();
+        } catch (Exception e) {
+            HttpUtil.reportLog("isNumeric:" + e.toString());
+        }
+        return false;
     }
 
     public static Boolean isEmail(String str) {
@@ -27,6 +31,7 @@ public class NumberUtils {
             }
             return isEmail;
         } catch (Exception e) {
+            HttpUtil.reportLog("isEmail:" + e.toString());
             return false;
         }
     }
@@ -54,7 +59,7 @@ public class NumberUtils {
             }
             return "₹" + str;
         } catch (Exception e) {
-            e.printStackTrace();
+            HttpUtil.reportLog("moneyFormat:" + e.toString());
             return "";
         }
     }
@@ -65,7 +70,7 @@ public class NumberUtils {
             long m = simpleDateFormat.parse(String.valueOf(day2)).getTime() - simpleDateFormat.parse(String.valueOf(day1)).getTime();
             return m / (1000 * 60 * 60 * 24);
         } catch (Exception e) {
-            e.printStackTrace();
+            HttpUtil.reportLog("getDateOffset:" + e.toString());
             return 0;
         }
     }
@@ -118,7 +123,7 @@ public class NumberUtils {
             }
             return month + " " + day + "," + year;
         } catch (Exception e) {
-            e.printStackTrace();
+            HttpUtil.reportLog("dateFormat:" + e.toString());
             return "";
         }
     }
@@ -139,8 +144,32 @@ public class NumberUtils {
                         context.getContentResolver(), Settings.Secure.ANDROID_ID);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            HttpUtil.reportLog("getIMEI:" + e.toString());
         }
         return imei;
     }
+
+    public static boolean isNeedToUpdate(String version, String minVersion) {
+        try {
+        String[] arr1 = version.split("\\.");
+        String[] arr2 = minVersion.split("\\.");
+        if (Integer.parseInt(arr1[0]) < Integer.parseInt(arr2[0])) {
+            return true;
+        } else if (Integer.parseInt(arr1[0]) == Integer.parseInt(arr2[0])) {
+            if (Integer.parseInt(arr1[1]) < Integer.parseInt(arr2[1])) {
+                return true;
+            } else if (Integer.parseInt(arr1[1]) == Integer.parseInt(arr2[1])) {
+                return Integer.parseInt(arr1[2]) < Integer.parseInt(arr2[2]);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        } catch (Exception e) {
+            HttpUtil.reportLog("isNeedToUpdate:" + e.toString());
+        }
+        return false;
+    }
+
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -69,6 +70,9 @@ public class PersonalInfoItemView extends LinearLayout {
             TextView title = view.findViewById(R.id.personal_item_title);
             title.setText(mIsMust ? "*" + mTitle : mTitle);
             enter = view.findViewById(R.id.personal_item_enter);
+            if (mTitle.equals("Email")) {
+                enter.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+            }
             enter.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {

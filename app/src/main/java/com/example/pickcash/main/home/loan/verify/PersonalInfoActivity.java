@@ -19,6 +19,7 @@ import com.example.pickcash.main.home.loan.verify.mgr.entity.PersonalInfoApply;
 import com.example.pickcash.main.home.loan.verify.mgr.entity.PersonalInfoFieldsReply;
 import com.example.pickcash.main.home.loan.verify.view.PersonalContactItemView;
 import com.example.pickcash.main.home.loan.verify.view.PersonalInfoItemView;
+import com.example.pickcash.util.HttpUtil;
 import com.example.pickcash.util.NumberUtils;
 import com.zcolin.frame.app.BaseFrameActivity;
 
@@ -230,7 +231,7 @@ public class PersonalInfoActivity extends BaseFrameActivity {
                         phoneNumbers.add(phone);
                         contactItemViews.get(contactPosition).setPhoneNum(name, phone);
                     } catch (Exception e) {
-
+                        HttpUtil.reportLog("CONTACT_REQUEST:" + e.toString());
                     }
                 }
                 break;

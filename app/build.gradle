@@ -32,6 +32,16 @@ android {
     }
     compileSdkVersion 31
     buildToolsVersion '29.0.2'
+    signingConfigs {
+        debug {
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+        release {
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
 }
 
 repositories {
@@ -49,6 +59,7 @@ dependencies {
     implementation 'com.github.zcolin:ZFrame:3.0.6'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.appsflyer:af-android-sdk:6.3.2'
 
     implementation project(":liveness")
     api(name: 'guardian_core_v2.9', ext: 'aar')

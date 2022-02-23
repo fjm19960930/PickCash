@@ -22,35 +22,14 @@ import com.example.pickcash.login.PickCashLoginActivity;
 import com.example.pickcash.main.mine.faq.FaqActivity;
 import com.example.pickcash.main.mine.kefu.KefuActivity;
 import com.example.pickcash.main.mine.mgr.MineMgr;
-import com.example.pickcash.main.mine.mgr.entity.ConfigReply;
 import com.example.pickcash.main.mine.record.LoanRecordActivity;
 import com.example.pickcash.main.mine.us.AboutUsActivity;
+import com.zcolin.frame.util.SpUtil;
 
 public class MineFragment extends Fragment {
     private AlertDialog logOutDialog;
-    private String mKfPhone;
-    private String mKfEmail;
-    private String mVersion;
 
-    public MineFragment() {
-
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        MineMgr.getConfigData(new MineMgr.GetConfigDataListener() {
-            @Override
-            public void onSuccess(ConfigReply.ConfigData data) {
-                mKfPhone = data.kfPhone;
-                mKfEmail = data.kfEmail;
-                mVersion = data.version;
-            }
-
-            @Override
-            public void onError(int code, String errorMsg) { }
-        });
-    }
+    public MineFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,34 +41,23 @@ public class MineFragment extends Fragment {
         phoneNum.setText(num);
 
         LinearLayout mineOutBtn = view.findViewById(R.id.mine_out_btn);
-        mineOutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logOutDialog.show();
-            }
-        });
+        mineOutBtn.setOnClickListener(v -> logOutDialog.show());
         LinearLayout mineFaqBtn = view.findViewById(R.id.mine_faq_btn);
-        mineFaqBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(requireActivity(), FaqActivity.class);
-                startActivity(intent);
-            }
+        mineFaqBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), FaqActivity.class);
+            startActivity(intent);
         });
         LinearLayout mineUsBtn = view.findViewById(R.id.mine_us_btn);
-        mineUsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(requireActivity(), AboutUsActivity.class);
-                intent.putExtra("version", mVersion);
-                startActivity(intent);
-            }
+        mineUsBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), AboutUsActivity.class);
+            intent.putExtra("version", PickCashApplication.mVersion);
+            startActivity(intent);
         });
         LinearLayout mineKefuBtn = view.findViewById(R.id.mine_customer_btn);
         mineKefuBtn.setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), KefuActivity.class);
-            intent.putExtra("phone", mKfPhone);
-            intent.putExtra("email", mKfEmail);
+            intent.putExtra("phone", PickCashApplication.mKfPhone);
+            intent.putExtra("email", PickCashApplication.mKfEmail);
             startActivity(intent);
         });
         LinearLayout mineRecordBtn = view.findViewById(R.id.mine_record_btn);
@@ -111,6 +79,7 @@ public class MineFragment extends Fragment {
         btnOK.setOnClickListener(v -> MineMgr.logOut(requireActivity(), new MineMgr.LogOutListener() {
             @Override
             public void onSuccess() {
+                SpUtil.putBoolean("test_loan_state", false);
                 Intent intent = new Intent(requireActivity(), PickCashLoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);

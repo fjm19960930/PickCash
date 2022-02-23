@@ -17,6 +17,6 @@ public class LoanItemDetailActivity extends BaseFrameActivity {
         String link = getIntent().getStringExtra("link");
         WebView newsWeb = findViewById(R.id.loan_item_detail_web);
         newsWeb.setWebViewClient(new WebViewClient());
-        newsWeb.loadUrl(link);//TODO load的网址地址
+        newsWeb.loadUrl(link);
     }
 }

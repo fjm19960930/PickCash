@@ -65,14 +65,15 @@
         <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/activity_verify_get_ifsc2.xml" value="0.2341485507246377" />
         <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_exit_verify_layout.xml" value="0.23731884057971014" />
         <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_log_out_layout.xml" value="0.24114583333333334" />
-        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_permission_layout.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_permission_layout.xml" value="0.144" />
         <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_reigister_app.xml" value="0.264" />
         <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_reigister_app_layout.xml" value="0.24114583333333334" />
         <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_select_layout.xml" value="0.24114583333333334" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/dialog_update_layout.xml" value="0.2" />
         <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/faq_rv_item_layout.xml" value="0.264" />
         <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/fragment_mine.xml" value="0.2" />
-        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/fragment_privacy.xml" value="0.264" />
+        <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/fragment_privacy.xml" value="0.152" />
         <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/home_loan_layout.xml" value="0.2265625" />
         <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/loading_dialog_layout.xml" value="0.24114583333333334" />
         <entry key="..\:/ASWorkSpace/PickCash/app/src/main/res/layout/personal_info_contact_item_layout.xml" value="0.24114583333333334" />

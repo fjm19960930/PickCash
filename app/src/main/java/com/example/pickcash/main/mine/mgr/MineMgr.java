@@ -3,7 +3,6 @@ package com.example.pickcash.main.mine.mgr;
 import android.app.Activity;
 
 import com.example.pickcash.PickCashApplication;
-import com.example.pickcash.main.mine.mgr.entity.ConfigReply;
 import com.example.pickcash.main.mine.mgr.entity.RecordReply;
 import com.example.pickcash.main.mine.mgr.entity.RepayLinkReply;
 import com.example.pickcash.main.mine.record.LoanRecordEntity;
@@ -75,6 +74,7 @@ public class MineMgr {
             @Override
             public void onError(int code, String error) {
                 super.onError(code, error);
+                HttpUtil.reportLog("getLoanRecord:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -100,6 +100,7 @@ public class MineMgr {
             @Override
             public void onError(int code, String error) {
                 super.onError(code, error);
+                HttpUtil.reportLog("getRepayLink:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -126,31 +127,7 @@ public class MineMgr {
             @Override
             public void onError(int code, String error) {
                 super.onError(code, error);
-                if (listener != null) {
-                    listener.onError(code, error);
-                }
-            }
-        });
-    }
-
-
-    public static void getConfigData(GetConfigDataListener listener) {
-        LinkedHashMap<String, String> headParams = new LinkedHashMap<>();
-        headParams.put("tm", HttpUtil.TM);
-        headParams.put("channel", HttpUtil.CHANNEL);
-        headParams.put("Accept-Language", HttpUtil.ACCEPT_LANGUAGE);
-        Map<String, String> params = new HashMap<>();
-        ZHttp.postWithHeader(HttpUtil.BASE_URL + "/app/getconfigapp", headParams, params, new BaseResponse<ConfigReply>() {
-            @Override
-            public void onSuccess(Response response, ConfigReply resObj) {
-                if (listener != null) {
-                    listener.onSuccess(resObj.data);
-                }
-            }
-
-            @Override
-            public void onError(int code, String error) {
-                super.onError(code, error);
+                HttpUtil.reportLog("logOut:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -172,12 +149,6 @@ public class MineMgr {
 
     public interface GetRepayLinkListener {
         void onSuccess(String link);
-
-        void onError(int code, String errorMsg);
-    }
-
-    public interface GetConfigDataListener {
-        void onSuccess(ConfigReply.ConfigData data);
 
         void onError(int code, String errorMsg);
     }

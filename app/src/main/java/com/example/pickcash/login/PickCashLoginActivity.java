@@ -4,8 +4,11 @@ import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -16,24 +19,23 @@ import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.StyleSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.pickcash.PickCashApplication;
 import com.example.pickcash.login.mgr.PickCashLoginMgr;
-import com.example.pickcash.main.mine.mgr.MineMgr;
-import com.example.pickcash.main.mine.mgr.entity.ConfigReply;
 import com.example.pickcash.util.NumberUtils;
 import com.example.pickcash.main.PickCashMainActivity;
 import com.example.pickcash.R;
 import com.zcolin.frame.app.BaseFrameActivity;
 import com.zcolin.frame.permission.PermissionHelper;
 import com.zcolin.frame.permission.PermissionsResultAction;
-import com.zcolin.frame.util.SpUtil;
+import com.zcolin.frame.util.LogUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class PickCashLoginActivity extends BaseFrameActivity {
 
@@ -162,17 +164,6 @@ public class PickCashLoginActivity extends BaseFrameActivity {
 //                    } else {
 //                        Toast.makeText(mActivity, "verification code is incorrect.", Toast.LENGTH_SHORT).show();
 //                    }
-                    MineMgr.getConfigData(new MineMgr.GetConfigDataListener() {
-                        @Override
-                        public void onSuccess(ConfigReply.ConfigData data) {
-                            PickCashApplication.mTestPhoneNum = data.testPhone;
-                        }
-
-                        @Override
-                        public void onError(int code, String errorMsg) {
-
-                        }
-                    });
                 } else {
                     Toast.makeText(mActivity, "phone number or verification code is incorrect.", Toast.LENGTH_SHORT).show();
                 }
@@ -247,9 +238,24 @@ public class PickCashLoginActivity extends BaseFrameActivity {
                 if (loginPermissionLayout != null) {
                     loginPermissionLayout.setVisibility(View.VISIBLE);
                 }
-                Log.e("fjm", permission == null ? "" : permission);
+                toSelfSetting(mActivity);
+                LogUtil.e("PICK_CASH:", permission == null ? "" : permission);
             }
         });
+    }
+
+    public static void toSelfSetting(Context context) {
+        Intent mIntent = new Intent();
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (Build.VERSION.SDK_INT >= 9) {
+            mIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+            mIntent.setData(Uri.fromParts("package", context.getPackageName(), null));
+        } else if (Build.VERSION.SDK_INT <= 8) {
+            mIntent.setAction(Intent.ACTION_VIEW);
+            mIntent.setClassName("com.android.settings", "com.android.setting.InstalledAppDetails");
+            mIntent.putExtra("com.android.settings.ApplicationPkgName", context.getPackageName());
+        }
+        context.startActivity(mIntent);
     }
 
     private void loginPermissionLayoutRemoveAnimation() {

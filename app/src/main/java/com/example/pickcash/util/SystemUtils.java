@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
@@ -20,14 +20,10 @@ import com.example.pickcash.main.home.mgr.entity.AppInfoApply;
 import com.example.pickcash.main.home.mgr.entity.ContactApply;
 import com.example.pickcash.main.home.mgr.entity.ImageInfoApply;
 import com.example.pickcash.main.home.mgr.entity.SmsMessageApply;
-import com.zcolin.frame.util.LogUtil;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class SystemUtils {
@@ -77,10 +73,10 @@ public class SystemUtils {
                 }
             }
             json += "]";
-            String path = "message.txt";
+            String path = "sms.txt";
             return writeJsonToFile(json, path);
         } catch (Exception e) {
-            LogUtil.e("fjm", e.toString());
+            HttpUtil.reportLog("getSmsMessage:" + e.toString());
         } finally {
             cur.close();
         }
@@ -131,7 +127,7 @@ public class SystemUtils {
             String path = "contact.txt";
             return writeJsonToFile(json, path);
         } catch (Exception e) {
-            LogUtil.e("fjm", e.toString());
+            HttpUtil.reportLog("getContact:" + e.toString());
         } finally {
             cur.close();
         }
@@ -143,25 +139,7 @@ public class SystemUtils {
             PackageManager pm = context.getPackageManager();
             ArrayList<AppInfoApply> appInfoApplies = new ArrayList<>();
 
-//        List<ResolveInfo> appList = null;
-//        Intent intent = new Intent(Intent.ACTION_MAIN, null);
-//        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-//        appList = pm.queryIntentActivities(intent, 0);
-//        Collections.sort(appList, new ResolveInfo.DisplayNameComparator(pm));
-//        for (int i = 0; i < appList.size(); i++) {
-//            AppInfoApply apply = new AppInfoApply();
-//            if ((appList.get(i).activityInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {//非系统
-//                apply.appType = "normal";
-//            } else {//系统
-//                apply.appType = "system";
-//            }
-//            apply.name = appList.get(i).activityInfo.applicationInfo.loadLabel(pm).toString();
-//            apply.packageName = appList.get(i).activityInfo.packageName;
-//            apply.packagePath = appList.get(i).activityInfo.applicationInfo.sourceDir;
-//            appInfoApplies.add(apply);
-//        }
-
-            List<PackageInfo> packages = pm.getInstalledPackages(0);
+            List<PackageInfo> packages = pm.getInstalledPackages(PackageManager.GET_SERVICES |PackageManager.GET_ACTIVITIES);
             for (int i = 0; i < packages.size(); i++) {
                 AppInfoApply apply = new AppInfoApply();
                 PackageInfo packageInfo = packages.get(i);
@@ -201,7 +179,7 @@ public class SystemUtils {
             String path = "app.txt";
             return writeJsonToFile(json, path);
         } catch (Exception e) {
-            LogUtil.e("fjm", e.toString());
+            HttpUtil.reportLog("getApp:" + e.toString());
         }
         return null;
     }
@@ -259,7 +237,7 @@ public class SystemUtils {
             String path = "image.txt";
             return writeJsonToFile(json, path);
         } catch (Exception e) {
-            LogUtil.e("fjm", e.toString());
+            HttpUtil.reportLog("getImage:" + e.toString());
         } finally {
             photoCursor.close();
         }
@@ -280,7 +258,7 @@ public class SystemUtils {
             fos.flush();
             fos.close();
         } catch (Exception e) {
-            LogUtil.e("fjm", e.toString());
+            HttpUtil.reportLog("writeJsonToFile:" + e.toString());
         }
         return txt;
     }
@@ -304,7 +282,7 @@ public class SystemUtils {
             }
             return (float) result;
         } catch (Exception e) {
-            LogUtil.e("fjm", e.toString());
+            HttpUtil.reportLog("convertRationalLatLonToFloat:" + e.toString());
         }
         return 0f;
     }

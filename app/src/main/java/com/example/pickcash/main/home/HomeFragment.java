@@ -21,6 +21,7 @@ import com.example.pickcash.main.home.mgr.HomeMgr;
 import com.example.pickcash.main.mine.kefu.KefuActivity;
 import com.example.pickcash.main.mine.mgr.MineMgr;
 import com.example.pickcash.main.mine.record.LoanItemDetailActivity;
+import com.example.pickcash.util.HttpUtil;
 import com.zcolin.frame.util.SpUtil;
 
 public class HomeFragment extends Fragment {
@@ -45,12 +46,11 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        view.findViewById(R.id.main_page_kefu_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(requireActivity(), KefuActivity.class);
-                startActivity(intent);
-            }
+        view.findViewById(R.id.main_page_kefu_btn).setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), KefuActivity.class);
+            intent.putExtra("phone", PickCashApplication.mKfPhone);
+            intent.putExtra("email", PickCashApplication.mKfEmail);
+            startActivity(intent);
         });
         applyLayout = view.findViewById(R.id.home_apply_layout);
         applyBtn = view.findViewById(R.id.home_apply_btn);
@@ -60,7 +60,8 @@ public class HomeFragment extends Fragment {
         payMoney = view.findViewById(R.id.home_need_pay_money);
 
         //测试页面
-        if (PickCashApplication.mTestPhoneNum.equals(PickCashApplication.mPhoneNum)) {
+        if (PickCashApplication.mTestPhoneNum != null && !PickCashApplication.mTestPhoneNum.isEmpty()
+                && PickCashApplication.mTestPhoneNum.equals(PickCashApplication.mPhoneNum)) {
             applyLayout.setVisibility(View.VISIBLE);
             repayLayout.setVisibility(View.GONE);
             applyBtn.setText("APPLY");
@@ -141,7 +142,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void getOrderList() {
-        HomeMgr.getOrderList(new HomeMgr.GetOrderListListener() {
+        HomeMgr.getOrderList(requireActivity(), new HomeMgr.GetOrderListListener() {
             @Override
             public void onSuccess(boolean isCanLoan, String loanDate, String loanMoney) {
                 if (isCanLoan) {

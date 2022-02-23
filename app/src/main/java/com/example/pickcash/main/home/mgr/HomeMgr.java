@@ -1,12 +1,13 @@
 package com.example.pickcash.main.home.mgr;
 
 import android.app.Activity;
-import android.widget.Toast;
 
 import com.example.pickcash.PickCashApplication;
 import com.example.pickcash.main.home.mgr.entity.LoanStateReply;
 import com.example.pickcash.main.home.mgr.entity.SdkKeyReply;
 import com.example.pickcash.main.home.mgr.entity.SubmitStateReply;
+import com.example.pickcash.main.home.mgr.entity.ConfigReply;
+import com.example.pickcash.main.home.mgr.entity.UpdateLinkReply;
 import com.example.pickcash.main.mine.mgr.entity.RecordReply;
 import com.example.pickcash.util.BaseReply;
 import com.example.pickcash.util.BaseResponse;
@@ -14,6 +15,7 @@ import com.example.pickcash.util.HttpUtil;
 import com.example.pickcash.util.NumberUtils;
 import com.example.pickcash.util.SystemUtils;
 import com.zcolin.frame.http.ZHttp;
+import com.zcolin.frame.util.LogUtil;
 
 import java.io.File;
 import java.util.HashMap;
@@ -47,6 +49,7 @@ public class HomeMgr {
             @Override
             public void onError(int code, String error) {
                 super.onError(code, error);
+                HttpUtil.reportLog("getLoanState:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -54,14 +57,14 @@ public class HomeMgr {
         });
     }
 
-    public static void getOrderList(GetOrderListListener listener) {
+    public static void getOrderList(Activity activity, GetOrderListListener listener) {
         LinkedHashMap<String, String> headParams = new LinkedHashMap<>();
         headParams.put("tm", HttpUtil.TM);
         headParams.put("token", PickCashApplication.mToken);
         headParams.put("channel", HttpUtil.CHANNEL);
         headParams.put("Accept-Language", HttpUtil.ACCEPT_LANGUAGE);
         Map<String, String> params = new HashMap<>();
-        ZHttp.postWithHeader(HttpUtil.BASE_URL + "/app/orderlist", headParams, params, new BaseResponse<RecordReply>() {
+        ZHttp.postWithHeader(HttpUtil.BASE_URL + "/app/orderlist", headParams, params, new BaseResponse<RecordReply>(activity) {
             @Override
             public void onSuccess(Response response, RecordReply resObj) {
                 if (resObj.data.list != null && !resObj.data.list.isEmpty() && listener != null) {
@@ -81,6 +84,7 @@ public class HomeMgr {
             @Override
             public void onError(int code, String error) {
                 super.onError(code, error);
+                HttpUtil.reportLog("getOrderList:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -113,6 +117,7 @@ public class HomeMgr {
             @Override
             public void onError(int code, String error) {
                 super.onError(code, error);
+                HttpUtil.reportLog("getSdkKey:" + error);
             }
         });
     }
@@ -139,6 +144,7 @@ public class HomeMgr {
             @Override
             public void onError(int code, String error) {
                 super.onError(code, error);
+                HttpUtil.reportLog("submitData:" + error);
             }
         });
 
@@ -175,6 +181,58 @@ public class HomeMgr {
             @Override
             public void onError(int code, String error) {
                 super.onError(code, error);
+                LogUtil.e("HttpResponse:", error);
+                HttpUtil.reportLog("getSubmitState:" + error);
+            }
+        });
+    }
+
+    public static void getConfigData(Activity activity, GetConfigDataListener listener) {
+        LinkedHashMap<String, String> headParams = new LinkedHashMap<>();
+        headParams.put("tm", HttpUtil.TM);
+        headParams.put("channel", HttpUtil.CHANNEL);
+        headParams.put("Accept-Language", HttpUtil.ACCEPT_LANGUAGE);
+        Map<String, String> params = new HashMap<>();
+        ZHttp.postWithHeader(HttpUtil.BASE_URL + "/app/getconfigapp", headParams, params, new BaseResponse<ConfigReply>(activity) {
+            @Override
+            public void onSuccess(Response response, ConfigReply resObj) {
+                if (listener != null) {
+                    listener.onSuccess(resObj.data);
+                }
+            }
+
+            @Override
+            public void onError(int code, String error) {
+                super.onError(code, error);
+                HttpUtil.reportLog("getConfigData:" + error);
+                if (listener != null) {
+                    listener.onError(code, error);
+                }
+            }
+        });
+    }
+
+    public static void getUpdateLink(Activity activity, GetUpdateLinkListener listener) {
+        LinkedHashMap<String, String> headParams = new LinkedHashMap<>();
+        headParams.put("tm", HttpUtil.TM);
+        headParams.put("channel", HttpUtil.CHANNEL);
+        headParams.put("Accept-Language", HttpUtil.ACCEPT_LANGUAGE);
+        Map<String, String> params = new HashMap<>();
+        ZHttp.postWithHeader(HttpUtil.BASE_URL + "/app/updatelink", headParams, params, new BaseResponse<UpdateLinkReply>(activity) {
+            @Override
+            public void onSuccess(Response response, UpdateLinkReply resObj) {
+                if (listener != null) {
+                    listener.onSuccess(resObj.data.link);
+                }
+            }
+
+            @Override
+            public void onError(int code, String error) {
+                super.onError(code, error);
+                HttpUtil.reportLog("getUpdateLink:" + error);
+                if (listener != null) {
+                    listener.onError(code, error);
+                }
             }
         });
     }
@@ -187,6 +245,18 @@ public class HomeMgr {
 
     public interface GetLoanStateListener {
         void onSuccess(String state);
+
+        void onError(int code, String errorMsg);
+    }
+
+    public interface GetConfigDataListener {
+        void onSuccess(ConfigReply.ConfigData data);
+
+        void onError(int code, String errorMsg);
+    }
+
+    public interface GetUpdateLinkListener {
+        void onSuccess(String link);
 
         void onError(int code, String errorMsg);
     }

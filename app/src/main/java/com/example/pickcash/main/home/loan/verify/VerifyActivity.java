@@ -27,8 +27,8 @@ import com.example.pickcash.PickCashApplication;
 import com.example.pickcash.R;
 import com.example.pickcash.main.home.loan.verify.mgr.VerifyMgr;
 import com.example.pickcash.main.home.loan.verify.mgr.entity.CardMessageReply;
+import com.example.pickcash.util.HttpUtil;
 import com.zcolin.frame.app.BaseFrameActivity;
-import com.zcolin.frame.util.LogUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -52,7 +52,7 @@ public class VerifyActivity extends BaseFrameActivity {
     private AlertDialog exitDialog;
 
     private TextView nowStep;
-    private TextView tip;
+    private TextView exitTip;
     private TextView stepTip;
     private TextView stepTip1;
     private TextView stepTip2;
@@ -76,6 +76,7 @@ public class VerifyActivity extends BaseFrameActivity {
     private TextView remakeBtn;
 
     private CardMessageReply.CardMessageData mCardData = new CardMessageReply.CardMessageData();
+    private TextView tip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +84,9 @@ public class VerifyActivity extends BaseFrameActivity {
         setContentView(R.layout.activity_verify);
 
         findViewById(R.id.verify_back_btn).setOnClickListener(v -> {
-            if (exitDialog != null && tip != null) {
+            if (exitDialog != null && exitTip != null) {
                 exitDialog.show();
-                tip.setText("You have " + (TOTAL_STEP - Integer.parseInt(String.valueOf(nowStep.getText())) + 1) + " steps to get the loan. Are you sure you want to leave?");
+                exitTip.setText("You have " + (TOTAL_STEP - Integer.parseInt(String.valueOf(nowStep.getText())) + 1) + " steps to get the loan. Are you sure you want to leave?");
             }
         });
 
@@ -133,7 +134,7 @@ public class VerifyActivity extends BaseFrameActivity {
                 }
             }
         });
-        TextView tip = (TextView) findViewById(R.id.verify_tip);
+        tip = (TextView) findViewById(R.id.verify_tip);
         tip.setVisibility(View.VISIBLE);
         tip.setText("1. Ensure that all the documents uploaded are clear and not blurred.\n2. Incomplete information may prevent you from passing the cetification successfufid");
         TextView nextBtn = (TextView) findViewById(R.id.verify_next_btn);
@@ -163,101 +164,105 @@ public class VerifyActivity extends BaseFrameActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case PickCashApplication.FACE_VERIFY_REQUEST_CODE:
-                if (LivenessResult.isSuccess()) {
-                    VerifyMgr.submitFaceId(mActivity, LivenessResult.getLivenessId(), new VerifyMgr.SubmitFaceIdListener() {
-                        @Override
-                        public void onSuccess() {
-                            toNext();
-                            Toast.makeText(mActivity, "Success", Toast.LENGTH_SHORT).show();
-                        }
+        try {
+            switch (requestCode) {
+                case PickCashApplication.FACE_VERIFY_REQUEST_CODE:
+                    if (LivenessResult.isSuccess()) {
+                        VerifyMgr.submitFaceId(mActivity, LivenessResult.getLivenessId(), new VerifyMgr.SubmitFaceIdListener() {
+                            @Override
+                            public void onSuccess() {
+                                toNext();
+                                Toast.makeText(mActivity, "Success", Toast.LENGTH_SHORT).show();
+                            }
 
-                        @Override
-                        public void onError(int code, String errorMsg) {
+                            @Override
+                            public void onError(int code, String errorMsg) {
 
-                        }
-                    });
-                } else {
-                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
-                    showErrorDialog(VERIFY_FACE_ERROR);
-                }
-                break;
-            case PickCashApplication.FACE_VERIFY_PAN_CARD:
-                if (ImageQualityResult.isSuccess()) {// 检测成功
-                    String imageQualityId = ImageQualityResult.getImageQualityId();// 图像id
-                    CardType cardType = ImageQualityResult.getCardType();// 卡片类型
-                    Bitmap bitmap = ImageQualityResult.getBitmap();// 预览框里的图像
-                    File imageFile = saveFile(bitmap, "panCard.jpg");
-                    VerifyMgr.getCardMessage(mActivity, P_CARD, imageFile, new VerifyMgr.GetCardMessageListener() {
-                        @Override
-                        public void onSuccess(CardMessageReply.CardMessageData data) {
-                            showConfirmDialog(PickCashApplication.FACE_VERIFY_PAN_CARD, data);
-                            Toast.makeText(mActivity, "Success PAN_CARD", Toast.LENGTH_SHORT).show();
-                        }
+                            }
+                        });
+                    } else {
+                        Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+                        showErrorDialog(VERIFY_FACE_ERROR);
+                    }
+                    break;
+                case PickCashApplication.FACE_VERIFY_PAN_CARD:
+                    if (ImageQualityResult.isSuccess()) {// 检测成功
+                        String imageQualityId = ImageQualityResult.getImageQualityId();// 图像id
+                        CardType cardType = ImageQualityResult.getCardType();// 卡片类型
+                        Bitmap bitmap = ImageQualityResult.getBitmap();// 预览框里的图像
+                        File imageFile = saveFile(bitmap, "panCard" + System.currentTimeMillis() + ".jpg");
+                        VerifyMgr.getCardMessage(mActivity, P_CARD, imageFile, new VerifyMgr.GetCardMessageListener() {
+                            @Override
+                            public void onSuccess(CardMessageReply.CardMessageData data) {
+                                showConfirmDialog(PickCashApplication.FACE_VERIFY_PAN_CARD, data);
+                                Toast.makeText(mActivity, "Success PAN_CARD", Toast.LENGTH_SHORT).show();
+                            }
 
-                        @Override
-                        public void onError(int code, String errorMsg) {
+                            @Override
+                            public void onError(int code, String errorMsg) {
 
-                        }
-                    });
-                } else {// 检测失败
-                    String errorCode = ImageQualityResult.getErrorCode();// 失败错误码
-                    String errorMsg = ImageQualityResult.getErrorMsg();// 失败原因，可能为空(例如用户点击返回键放弃，则只有错误码，没有msg)
-                    Log.e("fjm", "errorCode：" + errorCode + "，errorMsg:" + errorMsg);
-                    showErrorDialog(VERIFY_CARD_ERROR);
-                }
-                break;
-            case PickCashApplication.FACE_VERIFY_AADHAAR_FRONT:
-                if (ImageQualityResult.isSuccess()) {// 检测成功
-                    String imageQualityId = ImageQualityResult.getImageQualityId();// 图像id
-                    CardType cardType = ImageQualityResult.getCardType();// 卡片类型
-                    Bitmap bitmap = ImageQualityResult.getBitmap();// 预览框里的图像
-                    File imageFile = saveFile(bitmap, "ACardFront.jpg");
-                    VerifyMgr.getCardMessage(mActivity, A_FRONT, imageFile, new VerifyMgr.GetCardMessageListener() {
-                        @Override
-                        public void onSuccess(CardMessageReply.CardMessageData data) {
-                            showConfirmDialog(PickCashApplication.FACE_VERIFY_AADHAAR_FRONT, data);
-                            Toast.makeText(mActivity, "Success AADHAAR_FRONT", Toast.LENGTH_SHORT).show();
-                        }
+                            }
+                        });
+                    } else {// 检测失败
+                        String errorCode = ImageQualityResult.getErrorCode();// 失败错误码
+                        String errorMsg = ImageQualityResult.getErrorMsg();// 失败原因，可能为空(例如用户点击返回键放弃，则只有错误码，没有msg)
+                        Log.e("fjm", "errorCode：" + errorCode + "，errorMsg:" + errorMsg);
+                        showErrorDialog(VERIFY_CARD_ERROR);
+                    }
+                    break;
+                case PickCashApplication.FACE_VERIFY_AADHAAR_FRONT:
+                    if (ImageQualityResult.isSuccess()) {// 检测成功
+                        String imageQualityId = ImageQualityResult.getImageQualityId();// 图像id
+                        CardType cardType = ImageQualityResult.getCardType();// 卡片类型
+                        Bitmap bitmap = ImageQualityResult.getBitmap();// 预览框里的图像
+                        File imageFile = saveFile(bitmap, "ACardFront" + System.currentTimeMillis() + ".jpg");
+                        VerifyMgr.getCardMessage(mActivity, A_FRONT, imageFile, new VerifyMgr.GetCardMessageListener() {
+                            @Override
+                            public void onSuccess(CardMessageReply.CardMessageData data) {
+                                showConfirmDialog(PickCashApplication.FACE_VERIFY_AADHAAR_FRONT, data);
+                                Toast.makeText(mActivity, "Success AADHAAR_FRONT", Toast.LENGTH_SHORT).show();
+                            }
 
-                        @Override
-                        public void onError(int code, String errorMsg) {
+                            @Override
+                            public void onError(int code, String errorMsg) {
 
-                        }
-                    });
-                } else {// 检测失败
-                    String errorCode = ImageQualityResult.getErrorCode();// 失败错误码
-                    String errorMsg = ImageQualityResult.getErrorMsg();// 失败原因，可能为空(例如用户点击返回键放弃，则只有错误码，没有msg)
-                    Log.e("fjm", "errorCode：" + errorCode + "，errorMsg:" + errorMsg);
-                    showErrorDialog(VERIFY_CARD_ERROR);
-                }
-                break;
-            case PickCashApplication.FACE_VERIFY_AADHAAR_BACK:
-                if (ImageQualityResult.isSuccess()) {// 检测成功
-                    String imageQualityId = ImageQualityResult.getImageQualityId();// 图像id
-                    CardType cardType = ImageQualityResult.getCardType();// 卡片类型
-                    Bitmap bitmap = ImageQualityResult.getBitmap();// 预览框里的图像
-                    File imageFile = saveFile(bitmap, "ACardBack.jpg");
-                    VerifyMgr.getCardMessage(mActivity, A_BACK, imageFile, new VerifyMgr.GetCardMessageListener() {
-                        @Override
-                        public void onSuccess(CardMessageReply.CardMessageData data) {
-                            showConfirmDialog(PickCashApplication.FACE_VERIFY_AADHAAR_BACK, data);
-                            Toast.makeText(mActivity, "Success AADHAAR_BACK", Toast.LENGTH_SHORT).show();
-                        }
+                            }
+                        });
+                    } else {// 检测失败
+                        String errorCode = ImageQualityResult.getErrorCode();// 失败错误码
+                        String errorMsg = ImageQualityResult.getErrorMsg();// 失败原因，可能为空(例如用户点击返回键放弃，则只有错误码，没有msg)
+                        Log.e("fjm", "errorCode：" + errorCode + "，errorMsg:" + errorMsg);
+                        showErrorDialog(VERIFY_CARD_ERROR);
+                    }
+                    break;
+                case PickCashApplication.FACE_VERIFY_AADHAAR_BACK:
+                    if (ImageQualityResult.isSuccess()) {// 检测成功
+                        String imageQualityId = ImageQualityResult.getImageQualityId();// 图像id
+                        CardType cardType = ImageQualityResult.getCardType();// 卡片类型
+                        Bitmap bitmap = ImageQualityResult.getBitmap();// 预览框里的图像
+                        File imageFile = saveFile(bitmap, "ACardBack" + System.currentTimeMillis() + ".jpg");
+                        VerifyMgr.getCardMessage(mActivity, A_BACK, imageFile, new VerifyMgr.GetCardMessageListener() {
+                            @Override
+                            public void onSuccess(CardMessageReply.CardMessageData data) {
+                                showConfirmDialog(PickCashApplication.FACE_VERIFY_AADHAAR_BACK, data);
+                                Toast.makeText(mActivity, "Success AADHAAR_BACK", Toast.LENGTH_SHORT).show();
+                            }
 
-                        @Override
-                        public void onError(int code, String errorMsg) {
+                            @Override
+                            public void onError(int code, String errorMsg) {
 
-                        }
-                    });
-                } else {// 检测失败
-                    String errorCode = ImageQualityResult.getErrorCode();// 失败错误码
-                    String errorMsg = ImageQualityResult.getErrorMsg();// 失败原因，可能为空(例如用户点击返回键放弃，则只有错误码，没有msg)
-                    Log.e("fjm", "errorCode：" + errorCode + "，errorMsg:" + errorMsg);
-                    showErrorDialog(VERIFY_CARD_ERROR);
-                }
-                break;
+                            }
+                        });
+                    } else {// 检测失败
+                        String errorCode = ImageQualityResult.getErrorCode();// 失败错误码
+                        String errorMsg = ImageQualityResult.getErrorMsg();// 失败原因，可能为空(例如用户点击返回键放弃，则只有错误码，没有msg)
+                        Log.e("fjm", "errorCode：" + errorCode + "，errorMsg:" + errorMsg);
+                        showErrorDialog(VERIFY_CARD_ERROR);
+                    }
+                    break;
+            }
+        } catch (Exception e) {
+            HttpUtil.reportLog("VerifyActivity: Verify the face or card failure-" + e.toString());
         }
     }
 
@@ -307,7 +312,9 @@ public class VerifyActivity extends BaseFrameActivity {
         window.setGravity(Gravity.BOTTOM);
         window.setWindowAnimations(R.style.dialog_anim_style);
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        errorDialog.findViewById(R.id.verify_error_dialog_close).setOnClickListener(v -> errorDialog.dismiss());
+        errorDialog.findViewById(R.id.verify_error_dialog_close).setOnClickListener(v ->
+                errorDialog.dismiss()
+        );
         errorImg = (ImageView) errorDialog.findViewById(R.id.verify_error_dialog_img);
         errorTip = (TextView) errorDialog.findViewById(R.id.verify_error_dialog_tip);
     }
@@ -335,18 +342,18 @@ public class VerifyActivity extends BaseFrameActivity {
         window.setWindowAnimations(R.style.dialog_anim_style);
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        confirmName = findViewById(R.id.confirm_name);
-        confirmId = findViewById(R.id.confirm_id);
-        confirmBirth = findViewById(R.id.confirm_birth);
-        confirmFatherName = findViewById(R.id.confirm_father_name);
-        confirmGender = findViewById(R.id.confirm_gender);
-        confirmAddress = findViewById(R.id.confirm_address);
-        fatherNameLayout = findViewById(R.id.confirm_father_name_layout);
-        genderLayout = findViewById(R.id.confirm_gender_layout);
-        frontLayout = findViewById(R.id.confirm_a_card_front_layout);
-        backLayout = findViewById(R.id.confirm_a_card_back_layout);
-        confirmBtn = findViewById(R.id.confirm_btn);
-        remakeBtn = findViewById(R.id.confirm_remake_btn);
+        confirmName = view.findViewById(R.id.confirm_name);
+        confirmId = view.findViewById(R.id.confirm_id);
+        confirmBirth = view.findViewById(R.id.confirm_birth);
+        confirmFatherName = view.findViewById(R.id.confirm_father_name);
+        confirmGender = view.findViewById(R.id.confirm_gender);
+        confirmAddress = view.findViewById(R.id.confirm_address);
+        fatherNameLayout = view.findViewById(R.id.confirm_father_name_layout);
+        genderLayout = view.findViewById(R.id.confirm_gender_layout);
+        frontLayout = view.findViewById(R.id.confirm_a_card_front_layout);
+        backLayout = view.findViewById(R.id.confirm_a_card_back_layout);
+        confirmBtn = view.findViewById(R.id.confirm_btn);
+        remakeBtn = view.findViewById(R.id.confirm_remake_btn);
     }
 
     private void showConfirmDialog(int typeCode, CardMessageReply.CardMessageData data) {
@@ -433,7 +440,7 @@ public class VerifyActivity extends BaseFrameActivity {
         btnCancel.setOnClickListener(v -> {
             exitDialog.cancel();
         });
-        tip = view.findViewById(R.id.verify_exit_tip);
+        exitTip = view.findViewById(R.id.verify_exit_tip);
 
         builder.setView(view);
         exitDialog = builder.create();
@@ -448,18 +455,14 @@ public class VerifyActivity extends BaseFrameActivity {
 
     private File saveFile(Bitmap bm, String fileName) {//将Bitmap类型的图片转化成file类型，便于上传到服务器
         try {
-            String path = Environment.getExternalStorageDirectory() + "/card";
-            File dirFile = new File(path);
-            if(!dirFile.exists()){
-                dirFile.mkdir();
-            }
-            File myCaptureFile = new File(path + "/" + fileName);
+            File myCaptureFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + fileName);
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
             bm.compress(Bitmap.CompressFormat.JPEG, 80, bos);
             bos.flush();
             bos.close();
             return myCaptureFile;
         } catch (Exception e) {
+            HttpUtil.reportLog("saveFile: Failed to turn bitmap file-" + e.toString());
             return null;
         }
 

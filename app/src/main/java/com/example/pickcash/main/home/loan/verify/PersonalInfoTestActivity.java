@@ -16,6 +16,7 @@ import com.example.pickcash.R;
 import com.example.pickcash.main.home.loan.apply.LoanApplyTestActivity;
 import com.example.pickcash.main.home.loan.verify.view.PersonalContactItemView;
 import com.example.pickcash.main.home.loan.verify.view.PersonalInfoItemView;
+import com.example.pickcash.util.HttpUtil;
 import com.zcolin.frame.app.BaseFrameActivity;
 
 public class PersonalInfoTestActivity extends BaseFrameActivity {
@@ -114,7 +115,7 @@ public class PersonalInfoTestActivity extends BaseFrameActivity {
                         }
                         contactItemView.setPhoneNum(name, phone);
                     } catch (Exception e) {
-
+                        HttpUtil.reportLog("CONTACT_REQUEST_TEST:" + e.toString());
                     }
                 }
                 break;

@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.example.pickcash.login.PickCashLoginActivity;
 import com.example.pickcash.main.PickCashMainActivity;
+import com.example.pickcash.util.HttpUtil;
 import com.zcolin.frame.app.BaseFrameActivity;
 import com.zcolin.frame.util.SpUtil;
 
@@ -62,7 +63,7 @@ public class PickCashStartActivity extends BaseFrameActivity {
                     handler.sendEmptyMessage(0);// 通知主线程
                     finish();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    HttpUtil.reportLog("PickCashStartActivity:" + e.toString());
                 }
             }
         });

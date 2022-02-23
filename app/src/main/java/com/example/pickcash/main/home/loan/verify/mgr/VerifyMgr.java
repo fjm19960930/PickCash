@@ -40,6 +40,7 @@ public class VerifyMgr {
 
             @Override
             public void onError(int code, String error) {
+                HttpUtil.reportLog("getPersonalInfoFields:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -94,6 +95,7 @@ public class VerifyMgr {
 
             @Override
             public void onError(int code, String error) {
+                HttpUtil.reportLog("submitPersonalInfo:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -141,6 +143,7 @@ public class VerifyMgr {
 
             @Override
             public void onError(int code, String error) {
+                HttpUtil.reportLog("getIfsc:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -169,6 +172,7 @@ public class VerifyMgr {
 
             @Override
             public void onError(int code, String error) {
+                HttpUtil.reportLog("submitBankCardInfo:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -192,6 +196,7 @@ public class VerifyMgr {
 
             @Override
             public void onError(int code, String error) {
+                HttpUtil.reportLog("submitFaceId:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -221,6 +226,7 @@ public class VerifyMgr {
             @Override
             public void onError(int code, String error) {
                 super.onError(code, error);
+                HttpUtil.reportLog("getCardMessage:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }
@@ -254,6 +260,7 @@ public class VerifyMgr {
             @Override
             public void onError(int code, String error) {
                 super.onError(code, error);
+                HttpUtil.reportLog("changeCardMessage:" + error);
                 if (listener != null) {
                     listener.onError(code, error);
                 }

@@ -15,13 +15,17 @@
         android:layout_marginBottom="20dp"
         android:background="#49B8C0">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/us_back_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
-            android:layout_centerVertical="true"
-            android:background="@mipmap/back"/>
+            android:layout_width="50dp"
+            android:layout_height="48dp"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/back"/>
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="1dp"
-            android:text="V1.0.0"
+            android:text=""
             android:textColor="#ff333333"
             android:textSize="14sp"
             android:textStyle="bold"/>
@@ -79,8 +83,10 @@
             android:id="@+id/us_red_point"
             android:layout_width="4dp"
             android:layout_height="4dp"
+            android:visibility="gone"
             android:background="#FF6B6B"/>
         <ImageView
+            android:id="@+id/us_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@mipmap/next"/>

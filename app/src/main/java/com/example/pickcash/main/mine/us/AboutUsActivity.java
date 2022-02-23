@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pickcash.R;
 import com.zcolin.frame.app.BaseFrameActivity;
@@ -26,7 +27,7 @@ public class AboutUsActivity extends BaseFrameActivity {
         checkVersion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(mActivity, "Already the latest version", Toast.LENGTH_SHORT).show();
             }
         });
         TextView version = findViewById(R.id.us_version);
