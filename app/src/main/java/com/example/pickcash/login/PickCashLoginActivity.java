@@ -144,26 +144,22 @@ public class PickCashLoginActivity extends BaseFrameActivity {
         btnLogin.setOnClickListener(v -> {
             if (etOtp.getText().length() == 6 && etPhoneNumber.getText().length() == 10
                     && NumberUtils.isNumeric(etOtp.getText().toString())
-                    && NumberUtils.isNumeric(etPhoneNumber.getText().toString())){
+                    && NumberUtils.isNumeric(etPhoneNumber.getText().toString())) {
                 if (mPhoneNum.equals(etPhoneNumber.getText().toString())) {
-//                    if (mVerifyCode.equals(etOtp.getText().toString())) {
-                        PickCashLoginMgr.login(mActivity, mPhoneNum, etOtp.getText().toString(), new PickCashLoginMgr.LoginListener() {
-                            @Override
-                            public void onSuccess(boolean isNeedShowDialog) {
-                                Intent intent = new Intent(mActivity, PickCashMainActivity.class);
-                                intent.putExtra("isNeedShowDialog", isNeedShowDialog);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                            }
+                    PickCashLoginMgr.login(mActivity, mPhoneNum, etOtp.getText().toString(), new PickCashLoginMgr.LoginListener() {
+                        @Override
+                        public void onSuccess(boolean isNeedShowDialog) {
+                            Intent intent = new Intent(mActivity, PickCashMainActivity.class);
+                            intent.putExtra("isNeedShowDialog", isNeedShowDialog);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
 
-                            @Override
-                            public void onError(int code, String errorMsg) {
-                                Toast.makeText(mActivity, "Login failed", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-//                    } else {
-//                        Toast.makeText(mActivity, "verification code is incorrect.", Toast.LENGTH_SHORT).show();
-//                    }
+                        @Override
+                        public void onError(int code, String errorMsg) {
+                            Toast.makeText(mActivity, "Login failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 } else {
                     Toast.makeText(mActivity, "phone number or verification code is incorrect.", Toast.LENGTH_SHORT).show();
                 }
